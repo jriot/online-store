@@ -60,7 +60,7 @@ main {
   color: #fff;
   border-radius: 28px;
   padding: clamp(1.3rem, 2.5vw, 2.5rem);
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
 }
 
@@ -149,7 +149,7 @@ article button:hover,
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.1rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #cart h2,
