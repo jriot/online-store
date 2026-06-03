@@ -161,6 +161,7 @@ article button:hover,
   padding-left: 1.1rem;
 }
 
+
 #clear-cart {
   background: #fef3c7;
   color: #92400e;
@@ -210,6 +211,7 @@ footer {
   header {
     padding: 0.9rem 1rem;
   }
+  
 
   #hero {
     padding: 1.2rem;
