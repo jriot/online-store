@@ -186,7 +186,25 @@
     <script src="script.js"></script>
   </main>
 
-  
+  <div id="floating-cart" aria-live="polite">
+    <button id="floating-cart-toggle" type="button" aria-expanded="false">
+      Cart <span id="floating-cart-count">0</span>
+    </button>
+    <div id="floating-cart-panel" class="floating-cart-panel hidden">
+      <div class="floating-cart-header">
+        <h3>My Cart</h3>
+        <button id="floating-cart-close" type="button" aria-label="Close cart">×</button>
+      </div>
+      <p id="floating-cart-status">Your cart is empty.</p>
+      <ul id="floating-cart-items"></ul>
+      <div class="floating-cart-summary">
+        <span>Total</span>
+        <strong id="floating-cart-total">$0.00</strong>
+      </div>
+      <button id="floating-clear-cart" type="button">Clear Cart</button>
+    </div>
+  </div>
+
   <footer id="contact">
     <p>Contact us at support@shopsquare.com</p>
     <p>© 2026 ShopSquare</p>
