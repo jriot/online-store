@@ -1,3 +1,7 @@
+
+ *{box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -158,9 +162,137 @@ article button:hover,
 }
 
 
-#clear-cart {
+#clear-cart,
+#floating-clear-cart {
   background: #fef3c7;
   color: #92400e;
+}
+
+#floating-cart {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  width: min(360px, calc(100% - 2rem));
+  max-width: 360px;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18);
+}
+
+#floating-cart-toggle {
+  width: 100%;
+  border: 0;
+  border-radius: 24px;
+  padding: 0.95rem 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #0f172a);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+#floating-cart-toggle span {
+  background: #ffffff22;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.floating-cart-panel {
+  margin-top: 0.85rem;
+  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid rgba(209, 213, 219, 0.8);
+  padding: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.floating-cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.floating-cart-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#floating-cart-close {
+  border: 0;
+  background: transparent;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#floating-cart-status {
+  margin: 0 0 0.85rem;
+  color: #475569;
+}
+
+#floating-cart-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+#floating-cart-items li {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+#floating-cart-items .item-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#floating-cart-items .qty-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  padding: 0.2rem 0.35rem;
+}
+
+#floating-cart-items .qty-btn {
+  border: 0;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.floating-cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.65rem;
+  font-weight: 700;
+}
+
+#floating-clear-cart {
+  width: 100%;
 }
 
 footer {
