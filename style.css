@@ -1,16 +1,3 @@
-
- :root {
-  --border: #d1d5db;
-  --radius: 18px;
-  --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
-  --accent: #2563eb;
-  --surface: rgba(255, 255, 255, 0.96);
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -18,6 +5,7 @@ body {
   color: #333;
   line-height: 1.6;
 }
+
 
 header {
   display: flex;
@@ -32,10 +20,12 @@ header {
   z-index: 10;
 }
 
+
 header h1 {
   margin: 0;
   font-size: clamp(1.3rem, 2vw, 1.7rem);
 }
+
 
 nav {
   display: flex;
@@ -45,6 +35,7 @@ nav {
   justify-content: flex-end;
 }
 
+
 nav a {
   text-decoration: none;
   color: #333;
@@ -53,16 +44,19 @@ nav a {
   border-radius: 999px;
 }
 
+
 nav a:hover {
   background: #e0e7ff;
   color: #2563eb;
 }
+
 
 main {
   width: min(1180px, calc(100% - 1.25rem));
   margin: 0 auto;
   padding: 1.1rem 0 2.5rem;
 }
+
 
 #hero {
   background: linear-gradient(135deg, #111827, #1d4ed8 55%, #3b82f6);
@@ -78,20 +72,24 @@ main {
   font-size: clamp(1.6rem, 2.2vw, 2.1rem);
 }
 
+
 #hero p {
   margin: 0.35rem 0;
   color: rgba(255, 255, 255, 0.92);
   max-width: 700px;
 }
 
+
 section {
   margin-bottom: 1.5rem;
 }
+
 
 section > h2 {
   margin: 0 0 1rem;
   font-size: 1.35rem;
 }
+
 
 #products,
 #women-collection {
@@ -99,6 +97,7 @@ section > h2 {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
+
 
 article {
   background: rgba(255, 255, 255, 0.96);
@@ -111,15 +110,18 @@ article {
   gap: 0.75rem;
 }
 
+
 article h3 {
   margin: 0;
   font-size: 1.05rem;
 }
 
+
 article p {
   margin: 0;
   color: #666;
 }
+
 
 article img {
   width: 100%;
@@ -129,6 +131,7 @@ article img {
   display: block;
   background: #eef2f7;
 }
+
 
 article button,
 #clear-cart {
@@ -140,17 +143,20 @@ article button,
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
+
 article button {
   margin-top: auto;
   background: linear-gradient(135deg, #2563eb, #0f172a);
   color: #fff;
 }
 
+
 article button:hover,
 #clear-cart:hover {
   transform: translateY(-1px);
   opacity: 0.96;
 }
+
 
 #cart,
 #featured {
@@ -161,10 +167,12 @@ article button:hover,
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+
 #cart h2,
 #featured h2 {
   margin-top: 0;
 }
+
 
 #cart-items {
   padding-left: 1.1rem;
@@ -177,6 +185,7 @@ article button:hover,
   color: #92400e;
 }
 
+
 #floating-cart {
   position: fixed;
   right: 1rem;
@@ -186,6 +195,7 @@ article button:hover,
   max-width: 360px;
   box-shadow: 0 22px 60px rgba(15, 23, 42, 0.18);
 }
+
 
 #floating-cart-toggle {
   width: 100%;
@@ -201,12 +211,14 @@ article button:hover,
   cursor: pointer;
 }
 
+
 #floating-cart-toggle span {
   background: #ffffff22;
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
   font-size: 0.95rem;
 }
+
 
 .floating-cart-panel {
   margin-top: 0.85rem;
@@ -216,9 +228,11 @@ article button:hover,
   padding: 1rem;
 }
 
+
 .hidden {
   display: none;
 }
+
 
 .floating-cart-header {
   display: flex;
@@ -228,10 +242,12 @@ article button:hover,
   margin-bottom: 0.75rem;
 }
 
+
 .floating-cart-header h3 {
   margin: 0;
   font-size: 1rem;
 }
+
 
 #floating-cart-close {
   border: 0;
@@ -241,10 +257,12 @@ article button:hover,
   cursor: pointer;
 }
 
+
 #floating-cart-status {
   margin: 0 0 0.85rem;
   color: #475569;
 }
+
 
 #floating-cart-items {
   list-style: none;
@@ -256,6 +274,7 @@ article button:hover,
   overflow-y: auto;
 }
 
+
 #floating-cart-items li {
   display: grid;
   gap: 0.65rem;
@@ -265,12 +284,14 @@ article button:hover,
   border: 1px solid rgba(226, 232, 240, 0.85);
 }
 
+
 #floating-cart-items .item-top {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
   align-items: center;
 }
+
 
 #floating-cart-items .qty-controls {
   display: inline-flex;
@@ -280,6 +301,7 @@ article button:hover,
   background: #eef2ff;
   padding: 0.2rem 0.35rem;
 }
+
 
 #floating-cart-items .qty-btn {
   border: 0;
@@ -292,6 +314,7 @@ article button:hover,
   color: var(--accent);
 }
 
+
 .floating-cart-summary {
   display: flex;
   justify-content: space-between;
@@ -300,15 +323,18 @@ article button:hover,
   font-weight: 700;
 }
 
+
 #floating-clear-cart {
   width: 100%;
 }
+
 
 footer {
   text-align: center;
   padding: 1.1rem 1rem 2rem;
   color: #333;
 }
+
 
 @media (max-width: 768px) {
   header {
