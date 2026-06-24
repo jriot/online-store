@@ -1,148 +1,134 @@
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function saveCart() {
-   localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-function parsePrice(raw) {
-   const n = parseFloat(String(raw).replace(/[^0-9.]/g, ''));
-   return Number.isFinite(n) ? n : 0;
-}
-
-function formatPrice(n) {
-   return Number(n).toFixed(2);
-}
+let cart = [];
 
 function addToCart(name, price) {
-   const p = parsePrice(price);
-   const existing = cart.find(i => i.name === name);
-   if (existing) {
-      existing.quantity += 1;
-   } else {
-      cart.push({ name, price: p, quantity: 1 });
-   }
-   saveCart();
-   renderCart();
-  
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+    updateCart();
 }
 
-function clearCart() {
-   cart.length = 0;
-   saveCart();
-   renderCart();
+function removeFromCart(name) {
+    cart = cart.filter(item => item.name !== name);
+    updateCart();
 }
 
-function removeItem(name) {
-   const idx = cart.findIndex(i => i.name === name);
-   if (idx > -1) {
-      cart.splice(idx, 1);
-      saveCart();
-      renderCart();
-   }
+function adjustQuantity(name, delta) {
+    const item = cart.find(item => item.name === name);
+    if (!item) return;
+
+    item.quantity += delta;
+    if (item.quantity <= 0) {
+        removeFromCart(name);
+        return;
+    }
+
+    updateCart();
 }
 
-function changeQuantity(name, delta) {
-   const it = cart.find(i => i.name === name);
-   if (!it) return;
-   it.quantity = Math.max(1, it.quantity + delta);
-   saveCart();
-   renderCart();
+function updateCart() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    const statusEl = document.getElementById('cart-status');
+    const floatingStatusEl = document.getElementById('floating-cart-status');
+    const statusText = count === 0
+        ? 'Your cart is empty.'
+        : `You have ${count} item${count === 1 ? '' : 's'} in your cart.`;
+
+    if (statusEl) statusEl.textContent = statusText;
+    if (floatingStatusEl) floatingStatusEl.textContent = statusText;
+
+    const totalEl = document.getElementById('cart-total');
+    if (totalEl) totalEl.textContent = total.toFixed(2);
+
+    const floatingTotalEl = document.getElementById('floating-cart-total');
+    if (floatingTotalEl) floatingTotalEl.textContent = formatCurrency(total);
+
+    const countEl = document.getElementById('cart-count');
+    if (countEl) countEl.textContent = count;
+
+    const floatingCountEl = document.getElementById('floating-cart-count');
+    if (floatingCountEl) floatingCountEl.textContent = count;
+
+    updateCartList('cart-items', false);
+    updateCartList('floating-cart-items', true);
 }
 
-function renderCart() {
-   const status = document.getElementById('cart-status');
-   const itemsUl = document.getElementById('cart-items');
-   const totalSpan = document.getElementById('cart-total');
-   itemsUl.innerHTML = '';
-   if (!cart.length) {
-      status.textContent = 'Your cart is empty.';
-      totalSpan.textContent = '0';
-      return;
-   }
+function updateCartList(listId, isFloating) {
+    const listEl = document.getElementById(listId);
+    if (!listEl) return;
 
-   const totalItems = cart.reduce((s, it) => s + it.quantity, 0);
-   status.textContent = `Items in cart: ${totalItems}`;
+    listEl.innerHTML = '';
+    if (cart.length === 0) return;
 
-   let total = 0;
-   cart.forEach(item => {
-      total += item.price * item.quantity;
-      const li = document.createElement('li');
-      li.className = 'cart-item';
-      li.innerHTML = `
-         <div class="floating-item-info">
-            <div class="floating-item-name">${item.name}</div>
-            <div class="floating-item-price">$${formatPrice(item.price * item.quantity)}</div>
-         </div>
-         <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem">
-            <div class="item-controls">
-               <button class="qty-btn" data-action="dec" data-name="${escapeHtmlAttr(item.name)}">-</button>
-               <div class="item-qty">${item.quantity}</div>
-               <button class="qty-btn" data-action="inc" data-name="${escapeHtmlAttr(item.name)}">+</button>
-            </div>
-            <button class="remove-btn" data-remove="${escapeHtmlAttr(item.name)}">Remove</button>
-         </div>
-      `;
-      itemsUl.appendChild(li);
-   });
-   totalSpan.textContent = formatPrice(total);
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        if (isFloating) {
+            li.innerHTML = `
+                <div class="item-top">
+                  <strong>${item.name}</strong>
+                  <span>${formatCurrency(item.price * item.quantity)}</span>
+                </div>
+                <div class="item-details">
+                  <span>Unit price: ${formatCurrency(item.price)}</span>
+                </div>
+                <div class="item-controls">
+                  <span>${item.quantity} pcs</span>
+                  <div class="qty-controls">
+                    <button class="qty-btn" type="button" data-name="${item.name}" data-action="decrease">−</button>
+                    <span>${item.quantity}</span>
+                    <button class="qty-btn" type="button" data-name="${item.name}" data-action="increase">+</button>
+                  </div>
+                </div>
+            `;
+        } else {
+            li.innerHTML = `
+                <span><strong>${item.name}</strong> x ${item.quantity} — ${formatCurrency(item.price * item.quantity)}</span>
+                <button class="remove-item" type="button" data-name="${item.name}">Remove</button>
+            `;
+        }
+        listEl.appendChild(li);
+    });
+
+    if (isFloating) {
+        listEl.querySelectorAll('.qty-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.dataset.name;
+                const action = button.dataset.action;
+                adjustQuantity(name, action === 'increase' ? 1 : -1);
+            });
+        });
+    } else {
+        listEl.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', () => removeFromCart(button.dataset.name));
+        });
+    }
 }
 
-function escapeHtmlAttr(s) {
-   return String(s).replace(/"/g, '&quot;').replace(/'/g, "&#39;");
+function formatCurrency(value) {
+    return `$${value.toFixed(2)}`;
 }
 
-// Event delegation for buttons
-document.addEventListener('click', (e) => {
-   const t = e.target;
-   if (!t) return;
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('button[data-name][data-price]').forEach(button => {
+        button.addEventListener('click', () => {
+            const name = button.dataset.name;
+            const price = parseFloat(button.dataset.price);
+            if (!name || Number.isNaN(price)) return;
+            addToCart(name, price);
+        });
+    });
 
-   // buttons that have data-name and data-price (products in #products section)
-   if (t.matches('button[data-name][data-price]')) {
-      addToCart(t.dataset.name, t.dataset.price);
-      return;
-   }
+    const clearButton = document.getElementById('clear-cart');
+    if (clearButton) {
+        clearButton.addEventListener('click', () => {
+            cart = [];
+            updateCart();
+        });
+    }
 
-   if (t.id === 'clear-cart') {
-      clearCart();
-      return;
-   }
-
-   if (t.matches('button[data-action]')) {
-      const name = t.dataset.name;
-      const action = t.dataset.action;
-      if (action === 'inc') changeQuantity(name, 1);
-      if (action === 'dec') changeQuantity(name, -1);
-      return;
-   }
-
-   if (t.matches('button.remove-btn[data-remove]')) {
-      removeItem(t.dataset.remove);
-      return;
-   }
+    updateCart();
 });
-
- 
-
-window.addToCart = addToCart;
-window.clearCart = clearCart;
-
-// Shop button: scroll to products section
-const shopBtn = document.getElementById('shop-btn');
-if (shopBtn) {
-   shopBtn.addEventListener('click', () => {
-      const products = document.getElementById('products');
-      if (products) products.scrollIntoView({ behavior: 'smooth', block: 'start' });
-   });
-}
-
-// Handle the hero "Shop Now" form submit as a submit action
-const shopNowForm = document.getElementById('shop-now-form');
-if (shopNowForm) {
-   shopNowForm.addEventListener('submit', (ev) => {
-      ev.preventDefault();
-      const products = document.getElementById('products');
-      if (products) products.scrollIntoView({ behavior: 'smooth', block: 'start' });
-   });
-}
-
-renderCart();
