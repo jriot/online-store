@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>ShopSquare</h1>
+    <nav class="nav-links" id="nav-links">
+      <a href="#products">Products</a>
+      <a href="#featured">Featured</a>
+      <a href="#contact">Contact</a>
+        <button id="shop-btn" class="nav-shop-btn">Shop</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h2>Welcome to ShopSquare</h2>
+      <p>Find quality products for your home, office, and lifestyle.</p>
+      <p>Fast shipping, easy checkout, and friendly support.</p>
+      <form id="shop-now-form" aria-label="Shop now">
+        <button type="submit" id="shop-now-btn" class="hero-shop-btn">Shop Now</button>
+      </form>
+    </section>
+
+    <section id="products">
+      <h2>MEN COLLECTION</h2>
+      <article>
+        <h3>Louis phillipe formal shoes</h3>
+            <p>formal shoes for men.</p>
+       
+            <p> <img src="images/shoe 2.avif" alt="" height="350px" width="350px"></p>
+            <p>Price: $129</p>
+        <button data-name="Louis phillipe formal shoes" data-price="129">Add to Cart</button>
+      </article>
+      <article>
+        <h3>jayotai men shoes</h3>
+        <p>Comfortable and stylish shoes for everyday wear.</p>
+        <p><img src="images/men shoe.avif" alt="shoe" height="350px" width="350px"></p>
+        <p>Price: $59</p>
+        <button data-name="jayotai men shoes" data-price="59">Add to Cart</button>
+      </article>
+      <article>
+        <h3>Smart Watch</h3>
+        <p>smart oraimo watch.</p>
+        <p><img src="images/oraimo.webp" alt="oraimo" height="350px" width="350px"></p>
+        <p>Price: $39</p>
+        <button data-name="Smart Watch" data-price="39">Add to Cart</button>
+      </article>
+      <article>
+        <h3>men luxury watch</h3>
+        <p>Stylish and durable watch for the modern man.</p>
+        <p><img src="images/watch 2.webp" alt="watch" height="350px" width="350px"></p>
+        <p>Price: $84</p>
+        <button data-name="men luxury watch" data-price="84">Add to Cart</button>
+      </article>
+      <article>
+        <h3>men leather jacket</h3>
+        <p>stylish leather jackets</p>
+        <p><img src="images/gtg5y.jfif" alt="leather jacket" height="350px" width="350px"></p>
+        <p>Price: $129</p>
+        <button data-name="men leather jacket" data-price="129">Add to Cart</button>
+      </article>
+      
+      <article>
+        <h3>white grey runner</h3>
+        <p>Modern white and grey running shoes for daily comfort.</p>
+        <p><img src="images/33809766_1_1000x.webp" alt="white grey runner"></p>
+        <p>Price: $79</p>
+        <button data-name="white grey runner" data-price="79">Add to Cart</button>
+      </article>
+      <article>
+        <h3>slake white grey trainer</h3>
+        <p>Sporty trainer with lightweight cushioning and a sleek profile.</p>
+        <p><img src="images/SLAKE_22G-1178_WHT_LGRY_01.webp" alt="slake white grey trainer"></p>
+        <p>Price: $89</p>
+        <button data-name="slake white grey trainer" data-price="89">Add to Cart</button>
+      </article>
+    </section>
+
+    <section id="women-collection">
+      <h2>WOMEN COLLECTION</h2>
+      <article>
+        <h3>women fifi flat shoes</h3>
+        <p>Stylish women flat shoes.</p>
+        <p><img src="images/sergei.jpg" alt="women fifi flat shoes"height="350px" width="350px"></p>
+        <p>Price: $49</p>
+        <button onclick="addToCart('women fifi flat shoes', '$49')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>summer heels</h3>
+        <p>Elegant heels perfect for parties and evenings.</p>
+        <p><img src="images/heels.jpg" alt="summer heels" height="350px" width="350px"></p>
+        <p>Price: $69</p>
+        <button onclick="addToCart('summer heels', '$69')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>casual shoes</h3>
+        <p>Comfortable and stylish shoes for everyday wear.</p>
+        <p><img src="images/download (5).jfif" alt="casual shoes" height="350px" width="350px"></p>
+        <p>Price: $45</p>
+        <button onclick="addToCart('casual shoes', '$45')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>casual slip-ons</h3>
+        <p>Comfortable slip-on shoes for everyday wear.</p>
+        <p><img src="images/download (10).jfif" height="250px" width="250px"></p>
+        <p>Price: $39</p>
+        <button onclick="addToCart('casual slip-ons', '$39')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>everyday sneakers</h3>
+        <p>Versatile sneakers designed for daily comfort and style.</p>
+        <p><img src="images/download (9).jfif" alt="everyday sneakers"></p>
+        <p>Price: $54</p>
+        <button onclick="addToCart('everyday sneakers', '$54')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>urban street sneakers</h3>
+        <p>Casual street-style sneakers with a modern finish.</p>
+        <p><img src="images/anti-slip-and-comfortable-women-sport-shoes-842.jpg" alt=""></p>
+        <p>Price: $59</p>
+        <button onclick="addToCart('urban street sneakers', '$59')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>designer tote red dress</h3>
+        <p>Lightweight and stylish red dress for everyday essentials.</p>
+        <p><img src="images/imagesdg.jfif" alt="designer tote red dress"></p>
+        <p>Price: $39</p>
+        <button onclick="addToCart('designer tote red dress', '$39')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>women bacala bracelets</h3>
+        <p>Chic bracelets with a lightweight design.</p>
+        <p><img src="images/s-l1200.png" alt="women bacala bracelets"></p>
+        <p>Price: $55</p>
+        <button onclick="addToCart('women bacala bracelets', '$55')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>women bracelets</h3>
+        <p>Elegant bracelets for a stylish evening look.</p>
+        <p><img src="images/61qEaJh9NVL._UL500_.jpg" alt="women bracelets"></p>
+        <p>Price: $72</p>
+        <button onclick="addToCart('women bracelets', '$72')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>black suede scarf</h3>
+        <p>Classic black scarf with a soft suede finish.</p>
+        <p><img src="images/61UQ+szTToL._AC_SX385_.jpg" alt="black suede scarf"></p>
+        <p>Price: $68</p>
+        <button onclick="addToCart('black suede scarf', '$68')">Add to Cart</button>
+      </article>
+      <article>
+        <h3>designer scarf</h3>
+        <p>Stylish designer scarf for a touch of elegance.</p>
+        <p><img src="images/61ci9NcWgTL._UL500_.jpg" alt="designer scarf"></p>
+        <p>Price: $49</p>
+        <button onclick="addToCart('designer scarf', '$49')">Add to Cart</button>
+      </article>
+    <article>
+       <h3>a yellow elegant dress</h3>
+       <p>elegant stylish yellow dress designed for daily style.</p>
+       <p><img src="images/yellow-dress-isolated-on-white-260nw-2017912706.webp" alt="dress" height="350px" width="350px"></p>
+       <p>Price: $89</p>
+       <button onclick="addToCart('a yellow elegant dress', '$89')">Add to Cart</button>
+    </article>
+    </section>
+
+    <section id="cart">
+      <h2>Shopping Cart</h2>
+      <p id="cart-status">Your cart is empty.</p>
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="cart-total">0</span></p>
+      <button onclick="clearCart()" id="clear-cart">Clear Cart</button>
+    </section>
+    <section id="featured">
+      <h2>Featured Collection</h2>
+      <p>Explore our top picks for modern living and everyday convenience.</p>
+      <ul>
+        <li>Curated quality goods</li>
+        <li>Secure checkout</li>
+        <li>Easy returns</li>
+      </ul>
+    </section>
+  
+  </main>
+
+  
+
+  <footer id="contact">
+    <p>Contact us at support@shopsquare.com</p>
+    <p>© 2026 ShopSquare</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
