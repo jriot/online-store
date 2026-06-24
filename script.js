@@ -126,5 +126,23 @@ document.addEventListener('click', (e) => {
 window.addToCart = addToCart;
 window.clearCart = clearCart;
 
- 
+// Shop button: scroll to products section
+const shopBtn = document.getElementById('shop-btn');
+if (shopBtn) {
+   shopBtn.addEventListener('click', () => {
+      const products = document.getElementById('products');
+      if (products) products.scrollIntoView({ behavior: 'smooth', block: 'start' });
+   });
+}
+
+// Handle the hero "Shop Now" form submit as a submit action
+const shopNowForm = document.getElementById('shop-now-form');
+if (shopNowForm) {
+   shopNowForm.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const products = document.getElementById('products');
+      if (products) products.scrollIntoView({ behavior: 'smooth', block: 'start' });
+   });
+}
+
 renderCart();

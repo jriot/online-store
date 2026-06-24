@@ -58,6 +58,23 @@ nav a:hover {
   color: #2563eb;
 }
 
+.nav-shop-btn {
+  margin-left: 0.5rem;
+  border: 0;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.nav-shop-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
 
 main {
   width: min(1180px, calc(100% - 1.25rem));
@@ -85,6 +102,24 @@ main {
   margin: 0.35rem 0;
   color: rgba(255, 255, 255, 0.92);
   max-width: 700px;
+}
+
+.hero-shop-btn {
+  margin-top: 1rem;
+  border: 0;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: #fff;
+  padding: 0.8rem 1.1rem;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.18);
+}
+
+.hero-shop-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.98;
 }
 
 
